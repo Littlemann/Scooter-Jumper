@@ -17,6 +17,16 @@ public class Timer : MonoBehaviour
     {
         StartCoroutine(Countdown());
     }
+    private void OnEnable() 
+    {
+        GameManager.Instance.OnDeath += RestartTimer;
+        GameManager.Instance.OnLevelEnd += RestartTimer;
+    }
+    private void RestartTimer()
+    {
+       timeLeft =3f;
+       _canMove = false;
+    }
 
     IEnumerator Countdown()
     {
