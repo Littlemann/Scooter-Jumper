@@ -9,6 +9,8 @@ public class Jumper : MonoBehaviour
     [SerializeField] private float _smallSpeed;
     [SerializeField] private ParticleSystem _friction;
     [SerializeField] private ParticleSystem _fastWind;
+    [SerializeField] private AudioClip _windSound;
+    [SerializeField] private AudioSource _audioSource;
     private void Start() 
     {
         _myRb = GetComponent<Rigidbody>();
@@ -28,14 +30,9 @@ public class Jumper : MonoBehaviour
            _myRb.velocity = new Vector3(_myRb.velocity.x, 0.75f * _speed, _myRb.velocity.z);
            _friction.Play(true);
            _fastWind.Play(true);
+           _audioSource.PlayOneShot(_windSound);
            
            
-        }
-        if(other.gameObject.CompareTag("LittleBoost"))
-        {
-         
-           _myRb.velocity = new Vector3(_myRb.velocity.x, 0.75f * _smallSpeed, _myRb.velocity.z);
-            
         }
     }
 }

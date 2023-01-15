@@ -8,8 +8,9 @@ public class AIController : MonoBehaviour
     [SerializeField] Transform f1;
     [SerializeField] Transform f2;
     [SerializeField] Transform f3;
+    [SerializeField] Transform f4;
  
-    [SerializeField] float speed = 3.0f;
+    [SerializeField] float speed ;
     [SerializeField] float acceleration = 8.0f;
 
     NavMeshAgent agent;
@@ -17,8 +18,10 @@ public class AIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
+        
+           
+            agent = GetComponent<NavMeshAgent>();
+       // agent.speed = speed;
         agent.acceleration = acceleration;
         agent.SetDestination(f1.position);
 
@@ -33,6 +36,27 @@ public class AIController : MonoBehaviour
            
             
             agent.SetDestination(f3.position);
+        }
+        
+        if(agent.transform.position.z <= f3.position.z)
+        {
+           
+            
+            agent.SetDestination(f4.position);
+           
+        }
+        
+        
+    }
+    private void Update() 
+    {
+        if(Timer._canMove)
+        {
+            agent.speed = speed;
+        }
+        else
+        {
+            agent.speed = 0f;
         }
     }
 }

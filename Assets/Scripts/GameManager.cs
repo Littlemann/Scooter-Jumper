@@ -8,6 +8,13 @@ public class GameManager : MonoBehaviour
     public virtual bool IsDontDestroyOnLoad => true;
     public event System.Action OnLevelEnd;
 
+    public event System.Action OnDeath;
+   
+
+    
+    
+    
+
      void Awake()
     {
          if (Instance == null) 
@@ -23,6 +30,7 @@ public class GameManager : MonoBehaviour
         }
         
     }
+   
     private void OnDestroy()
     {
         if (Instance == this as GameManager)
@@ -33,8 +41,11 @@ public class GameManager : MonoBehaviour
     
      public void LevelFinish()
     {
-        OnLevelEnd?.Invoke();   
-       
+        OnLevelEnd?.Invoke(); 
+    }
+     public void Death()
+    {
+        OnDeath?.Invoke(); 
     }
 
 }

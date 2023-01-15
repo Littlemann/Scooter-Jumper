@@ -7,39 +7,63 @@ using TMPro;
 public class PointsSystem : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _pointsText;
-    [SerializeField] AudioClip collectSound;
-
-	  [SerializeField] GameObject collectEffect;
-
+    public static bool _passCircle;
+    int _totalLevelPoints = 0;
+    
+    private void OnEnable() 
+    {
+        GameManager.Instance.OnDeath +=  OnGameOver;
+        GameManager.Instance.OnLevelEnd += CalculatedNewScore;
+    }
+    
     private int _points;
+    private string pointsKey = "Points";
 
     private void Start() 
     {
-        _points = 0;
-        PlayerPrefs.SetInt("totalpoints" , 0);
+        // Get the points from PlayerPrefs
+            _pointsText.text = PlayerPrefs.GetInt(pointsKey , _points).ToString();
+
+      
     }
-    private void Update() 
-    { 
-        _pointsText.text = PlayerPrefs.GetInt("starpoints").ToString(); 
-        PlayerPrefs.SetInt("totalpoints" , PlayerPrefs.GetInt("starpoints") + PlayerPrefs.GetInt("points"));
-    }
+ 
   private void OnTriggerEnter(Collider other) 
   {
-    
-    if(other.CompareTag("Circle"))
+   
+
+    if(other.CompareTag("Circle") )
     {
-        _points += 5;
-        PlayerPrefs.SetInt("starpoints" , _points);
-        Collect ();   
+       
+        _totalLevelPoints += 5;
+         _pointsText.text =  (PlayerPrefs.GetInt(pointsKey , _points) + _totalLevelPoints).ToString(); 
+         _passCircle = true;  
     }
   }
+  private void OnTriggerExit(Collider other) 
+  {
+    if(other.CompareTag("Circle"))
+    {
+      _passCircle = false;
+    }
+  }
+  private void OnGameOver()
+  {
+     _pointsText.text = PlayerPrefs.GetInt(pointsKey , _points).ToString();
+     _totalLevelPoints = 0;
+  }
+  private void CalculatedNewScore()
+  {Debug.Log(_points);
+    
+   // _points += _totalLevelPoints;
+    Debug.Log(_points);
+    PlayerPrefs.SetInt(pointsKey, PlayerPrefs.GetInt(pointsKey , _points) + _totalLevelPoints);
+    Debug.Log(PlayerPrefs.GetInt(pointsKey , _points)+ " " + _points);
+    _totalLevelPoints = 0;
+    
+  }
+}
+
+
+
  
 
-  public void Collect()
-	{
-			AudioSource.PlayClipAtPoint(collectSound, transform.position);
-		
-			Instantiate(collectEffect, transform.position, Quaternion.identity);
-	}
-  
-}
