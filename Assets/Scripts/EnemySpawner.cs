@@ -9,13 +9,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start() 
     {
-       StartCoroutine(CDSpawn());
+      
+        InvokeRepeating("Spawn" , 3f , 3f);
     }
-    IEnumerator CDSpawn()
-    {
-        yield return new WaitForSeconds(3f);
-         
-        Instantiate(_enemy , transform.position , transform.rotation);
-    }
+   
+   private void Spawn()
+   {
+    Instantiate(_enemy , transform.position ,transform.rotation);
+   }
    
 }
