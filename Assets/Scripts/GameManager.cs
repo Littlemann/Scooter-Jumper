@@ -7,9 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public virtual bool IsDontDestroyOnLoad => true;
     public event System.Action OnLevelEnd;
-
     public event System.Action OnDeath;
-   
+    
 
     
     

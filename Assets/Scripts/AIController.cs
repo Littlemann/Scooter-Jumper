@@ -20,7 +20,7 @@ public class AIController : MonoBehaviour
     {
         
            
-            agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
        // agent.speed = speed;
         agent.acceleration = acceleration;
         agent.SetDestination(f1.position);
