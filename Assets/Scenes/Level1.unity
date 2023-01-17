@@ -4210,11 +4210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leftImage1: {fileID: 585664420}
-  _leftImage2: {fileID: 0}
-  _leftImage3: {fileID: 815142107}
-  _rightImage1: {fileID: 0}
+  _leftImage2: {fileID: 815142107}
+  _rightImage1: {fileID: 1743571758}
   _rightImage2: {fileID: 186173774}
-  _rightImage3: {fileID: 1743571758}
 --- !u!4 &359283526
 Transform:
   m_ObjectHideFlags: 0

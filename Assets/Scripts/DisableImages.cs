@@ -6,10 +6,10 @@ public class DisableImages : MonoBehaviour
 {
   [SerializeField] private GameObject _leftImage1;
   [SerializeField] private GameObject _leftImage2;
-  [SerializeField] private GameObject _leftImage3;
+  
   [SerializeField] private GameObject _rightImage1;
   [SerializeField] private GameObject _rightImage2;
-  [SerializeField] private GameObject _rightImage3;
+  
 
   private void Update() 
   {
@@ -20,14 +20,14 @@ public class DisableImages : MonoBehaviour
             {
                _rightImage1.SetActive(false);
                 _rightImage2.SetActive(false);
-                _rightImage3.SetActive(false);
+                
             }
             else if (touch.position.x < Screen.width / 2)
             {
                 
                 _leftImage1.SetActive(false);
                _leftImage2.SetActive(false);
-               _leftImage3.SetActive(false);
+               
             }
         }
   }
